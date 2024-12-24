@@ -66,7 +66,6 @@ export const Register = () => {
                                     name="name"
                                     className="mt-2 w-full px-4 py-2 border border-gray-600 rounded-md bg-gray-900 text-gray-100 focus:border-green-500 focus:ring-green-500 focus:outline-none"
                                     placeholder="Enter your name"
-                                    value={name}
                                     onChange={handleChange}
                                     required
                                     minLength={3}
@@ -82,7 +81,6 @@ export const Register = () => {
                                     name="email"
                                     className="mt-2 w-full px-4 py-2 border border-gray-600 rounded-md bg-gray-900 text-gray-100 focus:border-green-500 focus:ring-green-500 focus:outline-none"
                                     placeholder="Enter your email"
-                                    value={email}
                                     onChange={handleChange}
                                     required
                                 />
@@ -96,7 +94,6 @@ export const Register = () => {
                                     name="password"
                                     className="mt-2 w-full px-4 py-2 border border-gray-600 rounded-md bg-gray-900 text-gray-100 focus:border-green-500 focus:ring-green-500 focus:outline-none"
                                     placeholder="Enter password"
-                                    value={password}
                                     onChange={handleChange}
                                     required
                                     minLength={5}
