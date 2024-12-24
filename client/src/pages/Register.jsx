@@ -30,7 +30,7 @@ export const Register = () => {
     const signupbtn = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:8080/user/register', { name, email, password });
+            const response = await axios.post('https://avtechfin.onrender.com/user/register', { name, email, password });
             // localStorage.setItem("token", response.data.token);
 
             // Storing registered user details in state

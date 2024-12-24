@@ -22,7 +22,7 @@ export const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:8080/user/login', { email, password });
+            const response = await axios.post('https://avtechfin.onrender.com/user/login', { email, password });
             if (response.data.user.isVerified) {
                 localStorage.setItem('token', response.data.token);
                 navigate('/dash');
