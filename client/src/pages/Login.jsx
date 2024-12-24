@@ -61,7 +61,6 @@ export const Login = () => {
                                     name="email"
                                     className="mt-2 w-full px-4 py-2 border border-gray-600 rounded-md bg-gray-900 text-gray-100 focus:border-green-500 focus:ring-green-500 focus:outline-none"
                                     placeholder="Enter Email ID"
-                                    value={email}
                                     onChange={handleChange}
                                     required
                                     autoComplete="username"
@@ -77,7 +76,6 @@ export const Login = () => {
                                     name="password"
                                     className="mt-2 w-full px-4 py-2 border border-gray-600 rounded-md bg-gray-900 text-gray-100 focus:border-green-500 focus:ring-green-500 focus:outline-none"
                                     placeholder="Enter Password"
-                                    value={password}
                                     onChange={handleChange}
                                     required
                                     autoComplete="password"
