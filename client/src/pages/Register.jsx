@@ -9,39 +9,37 @@ export const Register = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
-    // State to store user details after successful registration
-    // const [userDetails, setUserDetails] = useState(null);
+    const [formData, setFormData] = useState("");
 
     const navigate = useNavigate();
-
     // Handlers for input changes
-    const handleNameChange = (e) => {
-        setName(e.target.value);
+    const handleChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.id]: e.target.value,
+        });
     };
-    const handleEmailChange = (e) => {
-        setEmail(e.target.value);
-    };
-    const handlePasswordChange = (e) => {
-        setPassword(e.target.value);
-    };
+
 
     // Submit handler
     const signupbtn = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('https://avtechfin.onrender.com/user/register', { name, email, password });
-            // localStorage.setItem("token", response.data.token);
-
-            // Storing registered user details in state
-            // setUserDetails({ name, email });
-            // navigate("/");
+            const res = await fetch('https://avtechfin.onrender.com/user/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
             alert('Registration successful! Please verify your email to continue.');
             navigate('/login');
         } catch (error) {
             alert("Error occurred while creating your account, sorry! You may have to restart your server.");
         }
     };
+
+
 
     return (
         <>
@@ -69,7 +67,7 @@ export const Register = () => {
                                     className="mt-2 w-full px-4 py-2 border border-gray-600 rounded-md bg-gray-900 text-gray-100 focus:border-green-500 focus:ring-green-500 focus:outline-none"
                                     placeholder="Enter your name"
                                     value={name}
-                                    onChange={handleNameChange}
+                                    onChange={handleChange}
                                     required
                                     minLength={3}
                                     maxLength={20}
@@ -85,7 +83,7 @@ export const Register = () => {
                                     className="mt-2 w-full px-4 py-2 border border-gray-600 rounded-md bg-gray-900 text-gray-100 focus:border-green-500 focus:ring-green-500 focus:outline-none"
                                     placeholder="Enter your email"
                                     value={email}
-                                    onChange={handleEmailChange}
+                                    onChange={handleChange}
                                     required
                                 />
                             </div>
@@ -99,7 +97,7 @@ export const Register = () => {
                                     className="mt-2 w-full px-4 py-2 border border-gray-600 rounded-md bg-gray-900 text-gray-100 focus:border-green-500 focus:ring-green-500 focus:outline-none"
                                     placeholder="Enter password"
                                     value={password}
-                                    onChange={handlePasswordChange}
+                                    onChange={handleChange}
                                     required
                                     minLength={5}
                                 />
