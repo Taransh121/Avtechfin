@@ -7,6 +7,7 @@ const dotenv = require("dotenv"); //For using process.env
 const app = express();
 const PORT = 8080;
 const authRoute = require("./Routes/AuthRoute")
+const path = require("path");
 
 //Configurations
 dotenv.config();
@@ -14,10 +15,8 @@ app.use(express.json());
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-
-//Routes
-app.use("/user", authRoute);
+//Hosting
+const dirname = path.resolve();
 
 //Database
 mongoose.set('strictQuery', false);
@@ -31,6 +30,14 @@ mongoose.connect(mongoURL, {
     console.log(error);
 });
 
+//Routes
+app.use("/user", authRoute);
+
+//Hosting-
+app.use(express.static(path.join(dirname, '/client/dist')));
+app.get('*', (req, res) => {
+    res.sendFile(path.join(dirname, 'client', 'dist', 'index.html'));
+})
 
 app.listen(PORT, () => {
     console.log(`Server running at PORT - ${PORT}`);
