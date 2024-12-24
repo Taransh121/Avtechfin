@@ -31,11 +31,13 @@ export const Register = () => {
         e.preventDefault();
         try {
             const response = await axios.post('http://localhost:8080/user/register', { name, email, password });
-            localStorage.setItem("token", response.data.token);
+            // localStorage.setItem("token", response.data.token);
 
             // Storing registered user details in state
             // setUserDetails({ name, email });
-            navigate("/");
+            // navigate("/");
+            alert('Registration successful! Please verify your email to continue.');
+            navigate('/login');
         } catch (error) {
             alert("Error occurred while creating your account, sorry! You may have to restart your server.");
         }

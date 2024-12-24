@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev":"nodemon server/index.js",
-    "start":"node server/index.js"
+    "dev": "nodemon server/index.js",
+    "start": "node server/index.js"
   },
   "author": "",
   "license": "ISC",
@@ -17,6 +17,7 @@
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.9.2",
+    "nodemailer": "^6.9.16",
     "path": "^0.12.7"
   }
 }

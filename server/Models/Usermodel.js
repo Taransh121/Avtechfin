@@ -17,10 +17,10 @@ const userSchema = mongoose.Schema({
         required: true,
         min: 5
     },
-    // phone: {
-    //     type: String,
-    //     required: true,
-    // },
+    isVerified: {
+        type: Boolean,
+        default: false
+    },
 }, { timeStamps: true });
 
 module.exports = mongoose.model('User', userSchema);

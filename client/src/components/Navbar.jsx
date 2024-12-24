@@ -7,6 +7,9 @@ export const Navbar = () => {
 
     const handleLogout = () => {
         localStorage.removeItem("token");
+        if (location.pathname === '/dash') {
+            navigate('/'); // Redirect to the home page
+        }
         // Optionally, trigger a re-render
         window.location.reload();
     };

@@ -23,12 +23,14 @@ export const Login = () => {
         e.preventDefault();
         try {
             const response = await axios.post('http://localhost:8080/user/login', { email, password });
-            // Save token in localStorage
-            localStorage.setItem('token', response.data.token);
-            // Navigate to home page
-            navigate('/');
+            if (response.data.user.isVerified) {
+                localStorage.setItem('token', response.data.token);
+                navigate('/dash');
+            } else {
+                alert('Please verify your email before logging in.');
+            }
         } catch (error) {
-            alert('Invalid credentials');
+            alert('Invalid credentials or email not verified.');
         }
     };
 
