@@ -6,23 +6,26 @@ import loginImg from "../assets/login.png";
 import { Navbar } from '../components/Navbar';
 
 export const Login = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
     const navigate = useNavigate();
-    // const dispatch = useDispatch(); // Access Redux dispatch function
+    const [formData, setFormData] = useState("");
 
-    const handleEmailChange = (e) => {
-        setEmail(e.target.value);
+    const handleChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.id]: e.target.value,
+        });
     };
-
-    const handlePasswordChange = (e) => {
-        setPassword(e.target.value);
-    };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('https://avtechfin.onrender.com/user/login', { email, password });
+            const res = await fetch('https://avtechfin.onrender.com/user/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include',
+                body: JSON.stringify(formData),
+            });
             if (response.data.user.isVerified) {
                 localStorage.setItem('token', response.data.token);
                 navigate('/dash');
@@ -59,7 +62,7 @@ export const Login = () => {
                                     className="mt-2 w-full px-4 py-2 border border-gray-600 rounded-md bg-gray-900 text-gray-100 focus:border-green-500 focus:ring-green-500 focus:outline-none"
                                     placeholder="Enter Email ID"
                                     value={email}
-                                    onChange={handleEmailChange}
+                                    onChange={handleChange}
                                     required
                                     autoComplete="username"
                                 />
@@ -75,7 +78,7 @@ export const Login = () => {
                                     className="mt-2 w-full px-4 py-2 border border-gray-600 rounded-md bg-gray-900 text-gray-100 focus:border-green-500 focus:ring-green-500 focus:outline-none"
                                     placeholder="Enter Password"
                                     value={password}
-                                    onChange={handlePasswordChange}
+                                    onChange={handleChange}
                                     required
                                     autoComplete="password"
                                 />

@@ -6,9 +6,6 @@ import { Navbar } from '../components/Navbar';
 
 export const Register = () => {
     // State for input fields
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
     const [formData, setFormData] = useState("");
 
     const navigate = useNavigate();
