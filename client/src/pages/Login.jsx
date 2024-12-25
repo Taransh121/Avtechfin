@@ -30,12 +30,12 @@ export const Login = () => {
         const data = await res.json();
         console.log(data);
 
-        if (data.user.isVerified) {
-            localStorage.setItem('token', response.data.token);
-            navigate('/dash');
-        } else {
-            alert('Please verify your email before logging in.');
-        }
+        localStorage.setItem('token', response.data.token);
+        navigate('/dash');
+        // if (data.user.isVerified) {
+        // } else {
+        //     alert('Please verify your email before logging in.');
+        // }
         // } catch (error) {
         //     alert('Invalid credentials or email not verified.');
         // }
