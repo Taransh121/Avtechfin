@@ -17,24 +17,24 @@ export const Login = () => {
     };
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            const res = await fetch('https://avtechfin.onrender.com/user/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                credentials: 'include',
-                body: JSON.stringify(formData),
-            });
-            if (response.data.user.isVerified) {
-                localStorage.setItem('token', response.data.token);
-                navigate('/dash');
-            } else {
-                alert('Please verify your email before logging in.');
-            }
-        } catch (error) {
-            alert('Invalid credentials or email not verified.');
+        // try {
+        const res = await fetch('https://avtechfin.onrender.com/user/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+            body: JSON.stringify(formData),
+        });
+        if (response.data.user.isVerified) {
+            localStorage.setItem('token', response.data.token);
+            navigate('/dash');
+        } else {
+            alert('Please verify your email before logging in.');
         }
+        // } catch (error) {
+        //     alert('Invalid credentials or email not verified.');
+        // }
     };
 
     return (
