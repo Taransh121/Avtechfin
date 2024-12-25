@@ -98,7 +98,8 @@ exports.register = async (req, res) => {
             },
         });
 
-        const verificationLink = `http://localhost:8080/user/verify?token=${verificationToken}`;
+        // const verificationLink = `http://localhost:8080/user/verify?token=${verificationToken}`;
+        const verificationLink = `https://avtechfin.onrender.com/user/verify?token=${verificationToken}`;
         await transporter.sendMail({
             from: process.env.EMAIL,
             to: savedUser.email,
