@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-// import { useDispatch } from 'react-redux';
 import loginImg from "../assets/login.png";
 import { Navbar } from '../components/Navbar';
 
@@ -17,28 +15,28 @@ export const Login = () => {
     };
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // try {
-        const res = await fetch('https://avtechfin.onrender.com/user/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            credentials: 'include',
-            body: JSON.stringify(formData),
-        });
-        // Parse the response JSON
-        const data = await res.json();
-        console.log(data);
+        try {
+            const res = await fetch('https://avtechfin.onrender.com/user/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include',
+                body: JSON.stringify(formData),
+            });
+            // Parse the response JSON
+            const data = await res.json();
+            console.log(data);
 
-        // localStorage.setItem('token', response.data.token);
-        navigate('/dash');
-        // if (data.user.isVerified) {
-        // } else {
-        //     alert('Please verify your email before logging in.');
-        // }
-        // } catch (error) {
-        //     alert('Invalid credentials or email not verified.');
-        // }
+            if (data.user.isVerified) {
+                localStorage.setItem('token', response.data.token);
+                navigate('/dash');
+            } else {
+                alert('Please verify your email before logging in.');
+            }
+        } catch (error) {
+            alert('Invalid credentials or email not verified.');
+        }
     };
 
     return (
