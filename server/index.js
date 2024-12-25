@@ -68,7 +68,9 @@ const dirname = path.resolve();
 
 // Database
 mongoose.set('strictQuery', false); // Keeps queries predictable for future versions
-const mongoURL = `mongodb+srv://Taransh7:${process.env.MONGO_DB_PASSWORD}@cluster0.i6nn1.mongodb.net/Cluster0?retryWrites=true&w=majority`;
+// const mongoURL = `mongodb+srv://Taransh7:${process.env.MONGO_DB_PASSWORD}@cluster0.i6nn1.mongodb.net/Cluster0?retryWrites=true&w=majority`;
+const mongoURL = `mongodb+srv://Taransh7:${process.env.MONGO_DB_PASSWORD}@cluster0.i6nn1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
+
 
 mongoose.connect(mongoURL)
     .then(() => {
