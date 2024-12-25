@@ -30,7 +30,7 @@ export const Login = () => {
         const data = await res.json();
         console.log(data);
 
-        localStorage.setItem('token', response.data.token);
+        // localStorage.setItem('token', response.data.token);
         navigate('/dash');
         // if (data.user.isVerified) {
         // } else {

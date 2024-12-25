@@ -117,32 +117,32 @@ exports.register = async (req, res) => {
 
 // Login with Email Verification Check
 exports.login = async (req, res) => {
-    try {
-        const { email, password } = req.body;
+    // try {
+    const { email, password } = req.body;
 
-        // Check if the user exists
-        const user = await User.findOne({ email });
-        if (!user) {
-            return res.status(400).json({ msg: "User does not exist" });
-        }
-
-        // Check if the user's email is verified
-        if (!user.isVerified) {
-            return res.status(403).json({ msg: "Email not verified. Please verify your email first." });
-        }
-
-        // Validate the password
-        const isPasswordValid = await bcrypt.compare(password, user.password);
-        if (!isPasswordValid) {
-            return res.status(400).json({ msg: "Invalid credentials" });
-        }
-
-        // Generate a JWT for authenticated sessions
-        const token = jwt.sign({ id: user._id }, process.env.Jwt_Token, { expiresIn: "1d" });
-        return res.status(200).json({ token, user });
-    } catch (error) {
-        return res.status(500).json({ error: "Server error during login." });
+    // Check if the user exists
+    const user = await User.findOne({ email });
+    if (!user) {
+        return res.status(400).json({ msg: "User does not exist" });
     }
+
+    // Check if the user's email is verified
+    if (!user.isVerified) {
+        return res.status(403).json({ msg: "Email not verified. Please verify your email first." });
+    }
+
+    // Validate the password
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+        return res.status(400).json({ msg: "Invalid credentials" });
+    }
+
+    // Generate a JWT for authenticated sessions
+    const token = jwt.sign({ id: user._id }, process.env.Jwt_Token, { expiresIn: "1d" });
+    return res.status(200).json({ token, user });
+    // } catch (error) {
+    //     return res.status(500).json({ error: "Server error during login." });
+    // }
 };
 
 // Logout
