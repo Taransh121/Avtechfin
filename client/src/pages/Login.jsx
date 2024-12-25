@@ -29,7 +29,7 @@ export const Login = () => {
         console.log(data);
 
         if (data.user.isVerified) {
-            localStorage.setItem('token', response.data.token);
+            localStorage.setItem('token', data.token);
             navigate('/dash');
         } else {
             alert('Please verify your email before logging in.');
