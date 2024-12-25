@@ -26,9 +26,11 @@ export const Login = () => {
             credentials: 'include',
             body: JSON.stringify(formData),
         });
-        console.log(res);
+        // Parse the response JSON
+        const data = await res.json();
+        console.log(data);
 
-        if (res.data.user.isVerified) {
+        if (data.user.isVerified) {
             localStorage.setItem('token', response.data.token);
             navigate('/dash');
         } else {
