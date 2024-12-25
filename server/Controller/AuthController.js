@@ -85,7 +85,7 @@ exports.register = async (req, res) => {
         const savedUser = await newUser.save();
 
         // Generate a verification token (valid for 10 minutes)
-        const verificationToken = jwt.sign({ email: savedUser.email }, process.env.Jwt_Token, {
+        const verificationToken = jwt.sign({ email: savedUser.email }, process.env.JWT_TOKEN, {
             expiresIn: "10m",
         });
 
@@ -138,7 +138,7 @@ exports.login = async (req, res) => {
     }
 
     // Generate a JWT for authenticated sessions
-    const token = jwt.sign({ id: user._id }, process.env.Jwt_Token, { expiresIn: "1d" });
+    const token = jwt.sign({ id: user._id }, process.env.JWT_TOKEN, { expiresIn: "1d" });
     return res.status(200).json({ token, user });
     // } catch (error) {
     //     return res.status(500).json({ error: "Server error during login." });
@@ -161,7 +161,7 @@ exports.verifyEmail = async (req, res) => {
         const { token } = req.query;
 
         // Verify the token
-        const decoded = jwt.verify(token, process.env.Jwt_Token);
+        const decoded = jwt.verify(token, process.env.JWT_TOKEN);
 
         // Find and update the user's verification status
         const user = await User.findOneAndUpdate(
